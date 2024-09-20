@@ -12,6 +12,13 @@ export type UserProps = {
   isCompleted: boolean;
 };
 
+export type TeamProps = {
+  id: string;
+  name: string;
+  stadium: string;
+  logo: string;
+};
+
 export type MainContextProps = {
   user: User | null;
   setUser: React.Dispatch<SetStateAction<User | null>>;
@@ -20,6 +27,8 @@ export type MainContextProps = {
   loading: boolean;
   initializing: boolean;
   setInitializing: React.Dispatch<SetStateAction<boolean>>;
+  teams: TeamProps[];
+  setTeams: React.Dispatch<SetStateAction<TeamProps[]>>;
 
   openModal: boolean;
   setOpenModal: React.Dispatch<SetStateAction<boolean>>;
@@ -46,6 +55,13 @@ export type MainContextProps = {
     setUser: React.Dispatch<SetStateAction<User | null>>,
     setCurrentUser: React.Dispatch<SetStateAction<UserProps | null>>,
     setInitializing: React.Dispatch<SetStateAction<boolean>>
+  ) => void;
+
+  handleAddTeam: (
+    id: string,
+    teamName: string,
+    teamStadoum: string,
+    logo: string
   ) => void;
 };
 export type MainProviderProps = {

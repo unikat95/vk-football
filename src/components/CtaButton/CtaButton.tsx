@@ -4,7 +4,7 @@ import { IconType } from "react-icons";
 type CtaButtonProps = {
   text: string;
   Icon: IconType;
-  onClick: () => void;
+  onClick?: (e: { preventDefault: () => void }) => void;
 };
 
 export default function CtaButton({ text, Icon, onClick }: CtaButtonProps) {

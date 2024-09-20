@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { MainContext } from "../context/MainContext";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
+import DashboardNavbar from "../components/Dashboard/DashboardNavbar/DashboardNavbar";
 
 export default function Dashboard() {
   const context = useContext(MainContext);
@@ -10,5 +11,10 @@ export default function Dashboard() {
 
   if (!currentUser?.isAdmin) return <Navigate to="/" />;
 
-  return <div>Dashboard</div>;
+  return (
+    <div className="w-full flex flex-col gap-5">
+      <DashboardNavbar />
+      <Outlet />
+    </div>
+  );
 }

@@ -3,9 +3,11 @@ import React, { createContext, useState } from "react";
 import { MainContextProps, MainProviderProps } from "./ContextTypes";
 
 import { handleLogin, handleSignUp, handleLogout } from "./AuthFunctions";
+import { handleAddTeam } from "./MainFunctions";
 
 import { useAuth } from "../hooks/useAuth";
 import PageLoading from "../components/PageLoading/PageLoading";
+import { useTeams } from "../hooks/useTeams";
 
 export const MainContext = createContext<MainContextProps | null>(null);
 
@@ -20,6 +22,7 @@ export default function MainProvider({ children }: MainProviderProps) {
     initializing,
     setInitializing,
   } = useAuth();
+  const { teams, setTeams } = useTeams();
 
   if (loading || initializing) return <PageLoading />;
 
@@ -34,12 +37,17 @@ export default function MainProvider({ children }: MainProviderProps) {
         initializing,
         setInitializing,
 
+        teams,
+        setTeams,
+
         openModal,
         setOpenModal,
 
         handleLogin,
         handleSignUp,
         handleLogout,
+
+        handleAddTeam,
       }}
     >
       {children}
