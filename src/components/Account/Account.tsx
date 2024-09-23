@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import Modal from "../Modal/Modal";
 import AccountForm from "../AccountForm/AccountForm";
 
-export default function Account() {
+type AccountProps = {
+  isOpen: boolean;
+  onClose: () => void;
+};
+
+export default function Account({ isOpen, onClose }: AccountProps) {
   const [isSignedIn, setIsSignedIn] = useState<boolean>(true);
 
   const handleMethodChange = () => {
@@ -11,7 +16,7 @@ export default function Account() {
 
   return (
     <>
-      <Modal closeButton={true}>
+      <Modal isOpen={isOpen} onClose={onClose} closeButton={true}>
         <div className="w-full flex flex-col justify-center items-center gap-8">
           <h1 className="text-2xl font-bold">
             {isSignedIn ? "Login" : "Create Account"}

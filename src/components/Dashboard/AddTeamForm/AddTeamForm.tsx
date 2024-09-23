@@ -1,4 +1,9 @@
-import React, { ChangeEvent, useContext, useState } from "react";
+import React, {
+  ChangeEvent,
+  SetStateAction,
+  useContext,
+  useState,
+} from "react";
 
 import { v4 as uuidv4 } from "uuid";
 import { IoIosAddCircleOutline } from "react-icons/io";
@@ -7,7 +12,11 @@ import CtaButton from "../../CtaButton/CtaButton";
 import { MainContext } from "../../../context/MainContext";
 import PageLoading from "../../PageLoading/PageLoading";
 
-export default function AddTeamForm() {
+type AddTeamFormProps = {
+  setIsOpen: React.Dispatch<SetStateAction<boolean>>;
+};
+
+export default function AddTeamForm({ setIsOpen }: AddTeamFormProps) {
   const context = useContext(MainContext);
   if (!context) return <PageLoading />;
 
@@ -22,9 +31,12 @@ export default function AddTeamForm() {
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
+    if (!team.name || !team.stadium) return;
+
     const id = uuidv4();
     handleAddTeam(id, team.name, team.stadium, team.logo);
     setTeam({ name: "", stadium: "", logo: "" });
+    setIsOpen(false);
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -36,9 +48,9 @@ export default function AddTeamForm() {
   };
 
   return (
-    <form className="w-full bg-white flex flex-col gap-2 p-5 rounded-md">
-      <h1>Dodaj drużynę:</h1>
-      <label htmlFor="name" className="flex flex-col">
+    <form className="w-full bg-white flex flex-col gap-5 rounded-md">
+      <h1 className="text-xl font-semibold">Dodaj drużynę:</h1>
+      <label htmlFor="name" className="flex flex-col gap-1">
         Nazwa:
         <input
           type="text"
@@ -46,10 +58,10 @@ export default function AddTeamForm() {
           placeholder="nazwa drużyny..."
           onChange={handleInputChange}
           value={team.name}
-          className="w-full border-[1px] border-slate-300 px-3 py-1"
+          className="w-full border-[1px] border-slate-300 px-3  py-2 rounded-md"
         />
       </label>
-      <label htmlFor="stadium">
+      <label htmlFor="stadium" className="flex flex-col gap-1">
         Stadion:
         <input
           type="text"
@@ -57,10 +69,10 @@ export default function AddTeamForm() {
           placeholder="stadion..."
           onChange={handleInputChange}
           value={team.stadium}
-          className="w-full border-[1px] border-slate-300 px-3 py-1"
+          className="w-full border-[1px] border-slate-300 px-3  py-2 rounded-md"
         />
       </label>
-      <label htmlFor="stadium">
+      <label htmlFor="stadium" className="flex flex-col gap-1">
         Logo:
         <input
           type="text"
@@ -68,7 +80,7 @@ export default function AddTeamForm() {
           placeholder="logo..."
           onChange={handleInputChange}
           value={team.logo}
-          className="w-full border-[1px] border-slate-300 px-3 py-1"
+          className="w-full border-[1px] border-slate-300 px-3  py-2 rounded-md"
         />
       </label>
 
@@ -76,6 +88,7 @@ export default function AddTeamForm() {
         text="Dodaj drużynę"
         Icon={IoIosAddCircleOutline}
         onClick={handleSubmit}
+        disabled={!team.name || !team.stadium}
       />
     </form>
   );

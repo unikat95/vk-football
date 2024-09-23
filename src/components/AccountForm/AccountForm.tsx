@@ -32,7 +32,7 @@ export default function AccountForm({ isSignedIn }: AccountFormProps) {
   const {
     handleLogin,
     handleSignUp,
-    setOpenModal,
+    setIsModalOpen,
     setInitializing,
     currentUser,
   } = context;
@@ -46,7 +46,7 @@ export default function AccountForm({ isSignedIn }: AccountFormProps) {
         formField.password,
         setLoading,
         setInitializing,
-        setOpenModal,
+        setIsModalOpen,
         currentUser,
         navigate
       );
@@ -56,7 +56,7 @@ export default function AccountForm({ isSignedIn }: AccountFormProps) {
         formField.password,
         setLoading,
         setInitializing,
-        setOpenModal,
+        setIsModalOpen,
         currentUser,
         navigate
       );

@@ -3,18 +3,25 @@ import { IconType } from "react-icons";
 
 type CtaButtonProps = {
   text: string;
-  Icon: IconType;
+  Icon?: IconType;
   onClick?: (e: { preventDefault: () => void }) => void;
+  disabled?: boolean;
 };
 
-export default function CtaButton({ text, Icon, onClick }: CtaButtonProps) {
+export default function CtaButton({
+  text,
+  Icon,
+  onClick,
+  disabled,
+}: CtaButtonProps) {
   return (
     <button
-      className="flex justify-center items-center gap-2 bg-black hover:bg-opacity-80 rounded-md text-white pr-2 pl-3 py-1"
+      className="flex justify-center items-center gap-2 bg-black hover:bg-opacity-80 rounded-md text-white pr-2 pl-3 py-1 disabled:bg-opacity-60 disabled:cursor-not-allowed"
       onClick={onClick}
+      disabled={disabled}
     >
       {text}
-      <Icon />
+      {Icon && <Icon />}
     </button>
   );
 }

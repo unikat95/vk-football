@@ -1,28 +1,43 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
+
 import AddTeamForm from "../AddTeamForm/AddTeamForm";
-import { MainContext } from "../../../context/MainContext";
-import PageLoading from "../../PageLoading/PageLoading";
+import TeamsList from "../TeamsList/TeamsList";
+
+import { IoIosAddCircleOutline } from "react-icons/io";
+import Modal from "../../Modal/Modal";
 
 export default function Teams() {
-  const context = useContext(MainContext);
-  if (!context) return <PageLoading />;
+  const [isOpen, setIsOpen] = useState(false);
 
-  const { teams } = context;
+  const handleOpenModal = () => {
+    setIsOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
 
   return (
-    <div className="w-full flex flex-col gap-5">
-      <AddTeamForm />
-      <div className="w-full grid grid-cols-2 gap-2">
-        {teams.map((team) => (
-          <div
-            key={team.id}
-            className="w-full flex flex-col justify-center items-center bg-white p-5 gap-2 rounded-md"
+    <>
+      <div className="w-full flex flex-col justify-start items-start gap-5">
+        <div>
+          <button
+            onClick={handleOpenModal}
+            className="bg-white hover:bg-zinc-100 flex justify-center items-center gap-2 px-4 py-2 rounded-md text-lg"
           >
-            <img src={team.logo} alt="" className="w-20 h-20" />
-            <div>{team.name}</div>
-          </div>
-        ))}
+            Dodaj drużynę <IoIosAddCircleOutline size={24} />
+          </button>
+        </div>
+        <Modal
+          isOpen={isOpen}
+          onClose={handleCloseModal}
+          closeButton={true}
+          contentClose={true}
+        >
+          <AddTeamForm setIsOpen={setIsOpen} />
+        </Modal>
+        <TeamsList />
       </div>
-    </div>
+    </>
   );
 }

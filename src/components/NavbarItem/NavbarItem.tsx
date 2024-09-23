@@ -10,9 +10,6 @@ type NavbarItemProps = {
 export default function NavbarItem({ to, name, setOpenMenu }: NavbarItemProps) {
   const location = useLocation();
 
-  console.log(location.pathname);
-  console.log(to);
-
   return (
     <li>
       <NavLink

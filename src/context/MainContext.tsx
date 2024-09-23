@@ -8,11 +8,12 @@ import { handleAddTeam } from "./MainFunctions";
 import { useAuth } from "../hooks/useAuth";
 import PageLoading from "../components/PageLoading/PageLoading";
 import { useTeams } from "../hooks/useTeams";
+import { usePlayers } from "../hooks/usePlayers";
 
 export const MainContext = createContext<MainContextProps | null>(null);
 
 export default function MainProvider({ children }: MainProviderProps) {
-  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const {
     user,
     setUser,
@@ -23,6 +24,7 @@ export default function MainProvider({ children }: MainProviderProps) {
     setInitializing,
   } = useAuth();
   const { teams, setTeams } = useTeams();
+  const { players, setPlayers } = usePlayers();
 
   if (loading || initializing) return <PageLoading />;
 
@@ -36,12 +38,14 @@ export default function MainProvider({ children }: MainProviderProps) {
         loading,
         initializing,
         setInitializing,
+        isModalOpen,
+        setIsModalOpen,
 
         teams,
         setTeams,
 
-        openModal,
-        setOpenModal,
+        players,
+        setPlayers,
 
         handleLogin,
         handleSignUp,

@@ -12,11 +12,43 @@ export type UserProps = {
   isCompleted: boolean;
 };
 
+export type PlayerProps = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  position: string;
+  age: string;
+};
+
 export type TeamProps = {
   id: string;
   name: string;
   stadium: string;
   logo: string;
+  points: number;
+  winnings: number;
+  draws: number;
+  lost: number;
+  goalsScored: number;
+  goalsConceded: number;
+  hostMatches: number;
+  hostWinnings: number;
+  hostDraws: number;
+  hostLost: number;
+  hostGoalsScored: number;
+  hostGoalsConceded: number;
+  awayMatches: number;
+  awayWinnings: number;
+  awayDraws: number;
+  awayLost: number;
+  awayGoalsScored: number;
+  awayGoalsConceded: number;
+  directMatches: number;
+  directWinnings: number;
+  directDraws: number;
+  directLost: number;
+  directGoalsScored: number;
+  directGoalsConceded: number;
 };
 
 export type MainContextProps = {
@@ -29,9 +61,10 @@ export type MainContextProps = {
   setInitializing: React.Dispatch<SetStateAction<boolean>>;
   teams: TeamProps[];
   setTeams: React.Dispatch<SetStateAction<TeamProps[]>>;
-
-  openModal: boolean;
-  setOpenModal: React.Dispatch<SetStateAction<boolean>>;
+  players: PlayerProps[];
+  setPlayers: React.Dispatch<SetStateAction<PlayerProps[]>>;
+  isModalOpen: boolean;
+  setIsModalOpen: React.Dispatch<SetStateAction<boolean>>;
 
   handleLogin: (
     email: string,
