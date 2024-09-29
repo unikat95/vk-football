@@ -1,6 +1,7 @@
-import React, { SetStateAction, useContext } from "react";
+import React, { SetStateAction } from "react";
+
 import NavbarItem from "../NavbarItem/NavbarItem";
-import { MainContext } from "../../context/MainContext";
+import { useMainContext } from "../../hooks/useMainContext";
 
 type NavbarItemsProps = {
   openMenu: boolean;
@@ -11,10 +12,7 @@ export default function NavbarItems({
   openMenu,
   setOpenMenu,
 }: NavbarItemsProps) {
-  const context = useContext(MainContext);
-
-  if (!context) return "loading...";
-  const { currentUser, setIsModalOpen } = context;
+  const { currentUser, setIsModalOpen } = useMainContext();
 
   const handleOpenModal = () => {
     setIsModalOpen(true);

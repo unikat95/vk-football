@@ -3,18 +3,30 @@ import React, { SetStateAction, useEffect, useRef, useState } from "react";
 import NavbarItems from "../NavbarItems/NavbarItems";
 import Logo from "../Logo/Logo";
 import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
+import { useLocation } from "react-router-dom";
 
 type NavbarProps = {
   setNavbarHeight: React.Dispatch<SetStateAction<number>>;
+  disabledPatch: string[];
 };
 
-export default function Navbar({ setNavbarHeight }: NavbarProps) {
+export default function Navbar({
+  setNavbarHeight,
+  disabledPatch,
+}: NavbarProps) {
   const [openMenu, setOpenMenu] = useState(false);
 
   const navRef = useRef<HTMLDivElement | null>(null);
+  const location = useLocation();
 
   useEffect(() => {
-    if (navRef.current) {
+    const isDisabled = disabledPatch.some((path) =>
+      location.pathname.startsWith(path)
+    );
+
+    if (isDisabled) {
+      setNavbarHeight(0);
+    } else if (navRef.current) {
       setNavbarHeight(navRef.current.offsetHeight);
     }
 
@@ -26,8 +38,11 @@ export default function Navbar({ setNavbarHeight }: NavbarProps) {
 
     window.addEventListener("resize", handleResize);
 
-    return () => removeEventListener("resize", handleResize);
-  }, []);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [location.pathname, setNavbarHeight, disabledPatch]);
+
+  if (disabledPatch.some((path) => location.pathname.startsWith(path)))
+    return null;
 
   return (
     <nav

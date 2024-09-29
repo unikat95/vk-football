@@ -16,12 +16,12 @@ export default function CtaButton({
 }: CtaButtonProps) {
   return (
     <button
-      className="flex justify-center items-center gap-2 bg-black hover:bg-opacity-80 rounded-md text-white pr-2 pl-3 py-1 disabled:bg-opacity-60 disabled:cursor-not-allowed"
+      className="flex justify-center items-center gap-2 bg-black hover:bg-opacity-80 rounded-md text-white pr-4 pl-5 py-3 disabled:bg-opacity-60 disabled:cursor-not-allowed"
       onClick={onClick}
       disabled={disabled}
     >
       {text}
-      {Icon && <Icon />}
+      {Icon && <Icon size={16} />}
     </button>
   );
 }

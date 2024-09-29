@@ -1,9 +1,9 @@
-import React, { ChangeEvent, useContext, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 
 import AccountFormInput from "../AccountFormInput/AccountFormInput";
-import { MainContext } from "../../context/MainContext";
 import LoadingIcon from "../LoadingIcon/LoadingIcon";
 import { useNavigate } from "react-router-dom";
+import { useMainContext } from "../../hooks/useMainContext";
 
 type AccountFormProps = {
   isSignedIn: boolean;
@@ -26,16 +26,13 @@ export default function AccountForm({ isSignedIn }: AccountFormProps) {
 
   const navigate = useNavigate();
 
-  const context = useContext(MainContext);
-  if (!context) return "loading...";
-
   const {
     handleLogin,
     handleSignUp,
     setIsModalOpen,
     setInitializing,
     currentUser,
-  } = context;
+  } = useMainContext();
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();

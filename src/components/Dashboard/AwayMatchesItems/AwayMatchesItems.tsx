@@ -1,4 +1,5 @@
 import React, { ChangeEvent, Dispatch, SetStateAction } from "react";
+import FormInputNumber from "../../FormInputNumber/FormInputNumber";
 
 type HostMatchesItemsProps = {
   formInput: {
@@ -43,58 +44,40 @@ export default function AwayMatchesItems({
 
   return (
     <>
-      <h1 className="font-medium border-b pb-2">Mecze na wyjeździe</h1>
-      <div className="w-full grid grid-cols-2 gap-x-5 gap-y-2">
-        <label htmlFor="points">
-          Wygrane:
-          <input
-            type="number"
-            name="awayWinnings"
-            value={formInput.awayWinnings}
-            onChange={handleChangeInput}
-            className="w-full border-[1px] border-slate-300 px-3  py-2 rounded-md"
-          />
-        </label>
-        <label htmlFor="points">
-          Remisy:
-          <input
-            type="number"
-            name="awayDraws"
-            value={formInput.awayDraws}
-            onChange={handleChangeInput}
-            className="w-full border-[1px] border-slate-300 px-3  py-2 rounded-md"
-          />
-        </label>
-        <label htmlFor="points">
-          Przegrane:
-          <input
-            type="number"
-            name="awayLost"
-            value={formInput.awayLost}
-            onChange={handleChangeInput}
-            className="w-full border-[1px] border-slate-300 px-3  py-2 rounded-md"
-          />
-        </label>
-        <label htmlFor="points">
-          Strzelone bramki:
-          <input
-            type="number"
-            name="awayGoalsScored"
-            value={formInput.awayGoalsScored}
-            onChange={handleChangeInput}
-            className="w-full border-[1px] border-slate-300 px-3  py-2 rounded-md"
-          />
-        </label>
-        <label htmlFor="points">
-          Stracone bramki:
-          <input
-            type="number"
-            name="awayGoalsConceded"
-            value={formInput.awayGoalsConceded}
-            onChange={handleChangeInput}
-            className="w-full border-[1px] border-slate-300 px-3  py-2 rounded-md"
-          />
-        </label>
+      <h1 className="font-medium text-slate-600 border-b pb-2">
+        Mecze na wyjeździe
+      </h1>
+      <div className="w-full grid grid-cols-3 xl:grid-cols-5 gap-x-5 gap-y-2">
+        <FormInputNumber
+          formInput={formInput.awayWinnings}
+          name="awayWinnings"
+          onChange={handleChangeInput}
+          text="Wygrane:"
+        />
+        <FormInputNumber
+          formInput={formInput.awayDraws}
+          name="awayDraws"
+          onChange={handleChangeInput}
+          text="Remisy:"
+        />
+        <FormInputNumber
+          formInput={formInput.awayLost}
+          name="awayLost"
+          onChange={handleChangeInput}
+          text="Przegrane:"
+        />
+        <FormInputNumber
+          formInput={formInput.awayGoalsScored}
+          name="awayGoalsScored"
+          onChange={handleChangeInput}
+          text="Strzelone bramki:"
+        />
+        <FormInputNumber
+          formInput={formInput.awayGoalsConceded}
+          name="awayGoalsConceded"
+          onChange={handleChangeInput}
+          text="Stracone bramki:"
+        />
       </div>
     </>
   );

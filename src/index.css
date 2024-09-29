@@ -40,9 +40,10 @@
 }
 
 body {
+  @apply bg-primaryLight;
+
   width: 100dvw;
   height: auto;
-  background: #dedede;
   font-family: "Poppins", sans-serif;
   overflow-x: hidden;
 }
@@ -89,4 +90,8 @@ body {
 
 .hamburger-menu.active::after {
   transform: translateY(10px) rotate(-45deg);
+}
+
+.dash-active {
+  @apply bg-primaryCyan;
 }

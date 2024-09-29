@@ -61,6 +61,7 @@ export type MainContextProps = {
   setInitializing: React.Dispatch<SetStateAction<boolean>>;
   teams: TeamProps[];
   setTeams: React.Dispatch<SetStateAction<TeamProps[]>>;
+  sortedTeams: TeamProps[];
   players: PlayerProps[];
   setPlayers: React.Dispatch<SetStateAction<PlayerProps[]>>;
   isModalOpen: boolean;

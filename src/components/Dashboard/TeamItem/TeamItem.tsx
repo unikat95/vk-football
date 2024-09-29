@@ -24,33 +24,40 @@ export default function TeamItem({ team, index, editable }: TeamItemProps) {
     setIsOpen(true);
   };
 
+  const teamBg = team.name === "Victoria Kidałowice" ? "#50B2C0" : undefined;
+
+  const teamColor = team.name === "Victoria Kidałowice" ? "white" : undefined;
+
   return (
     <>
       <div
         key={team.id}
-        className={`w-full grid grid-cols-[auto,2fr,1fr,1fr,1fr,1fr,1fr,1fr,1fr] bg-zinc-100 hover:bg-slate-200 p-1 gap-1 text-sm font-light justify-center items-center ${
-          editable && "cursor-pointer"
-        }`}
+        className={`w-full grid grid-cols-[auto,2fr,repeat(6,1fr)] md:grid-cols-[auto,2fr,repeat(7,1fr)] bg-primaryLight odd:bg-secondaryLight hover:bg-secondaryDark hover:text-white px-2 py-2 md:py-2 gap-1 text-xs md:text-sm font-light md:font-normal justify-center items-center
+
+        ${editable && "cursor-pointer"}`}
+        style={{ backgroundColor: teamBg, color: teamColor }}
         onClick={editable ? handleOpenModal : undefined}
       >
-        <div className="w-6 pl-2 text-center font-semibold text-xs">
-          {index + 1}
-        </div>
-        <div className="px-2 text-nowrap col-span-2 flex justify-start items-center">
+        <div className="w-3 text-center font-semibold text-xs">{index + 1}</div>
+        <div className="px-1 text-nowrap col-span-2 flex justify-start items-center truncate overflow-hidden whitespace-nowrap">
           {team.name}
         </div>
-        <div className="px-2 text-center font-medium">{team.points}</div>
-        <div className="px-2 text-center">{teamMatches}</div>
+        <div className="flex justify-center items-center font-medium">
+          {team.points}
+        </div>
+        <div className="flex justify-center items-center">{teamMatches}</div>
 
-        <div className="px-2 text-center">
+        <div className="flex justify-center items-center">
           {team.awayWinnings + team.hostWinnings}
         </div>
-        <div className="px-2 text-center">
+        <div className="flex justify-center items-center">
           {team.awayDraws + team.hostDraws}
         </div>
-        <div className="px-2 text-center">{team.awayLost + team.hostLost}</div>
+        <div className="flex justify-center items-center">
+          {team.awayLost + team.hostLost}
+        </div>
 
-        <div className="px-2 text-center">
+        <div className="justify-center items-center hidden md:flex">
           {team.awayGoalsScored + team.hostGoalsScored}-
           {team.awayGoalsConceded + team.hostGoalsConceded}
         </div>
@@ -60,6 +67,8 @@ export default function TeamItem({ team, index, editable }: TeamItemProps) {
         onClose={handleCloseModal}
         closeButton={true}
         contentClose={false}
+        widthClass="w-full sm:w-[70%]"
+        heightClass="h-full sm:h-[80%]"
       >
         <EditTeam team={team} onClose={handleCloseModal} />
       </Modal>

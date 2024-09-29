@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Account from "./components/Account/Account";
 import { MainContext } from "./context/MainContext";
 import PageLoading from "./components/PageLoading/PageLoading";
+import Container from "./components/Container/Container";
 
 export default function Layout() {
   const [navbarHeight, setNavbarHeight] = useState<number>(0);
@@ -17,9 +18,11 @@ export default function Layout() {
     setIsModalOpen(false);
   };
 
+  const disabledPatch = ["/dashboard"];
+
   return (
-    <div className="w-full max-w-[1400px] h-auto flex flex-col gap-5 px-5 py-5 2xl:px-0">
-      <Navbar setNavbarHeight={setNavbarHeight} />
+    <Container disabledPatch={disabledPatch}>
+      <Navbar setNavbarHeight={setNavbarHeight} disabledPatch={disabledPatch} />
       <div
         className="w-full h-full flex flex-col justify-start items-start p-0"
         style={{ paddingTop: `${navbarHeight}px` }}
@@ -27,6 +30,6 @@ export default function Layout() {
         <Outlet />
         <Account isOpen={isModalOpen} onClose={handleClose} />
       </div>
-    </div>
+    </Container>
   );
 }

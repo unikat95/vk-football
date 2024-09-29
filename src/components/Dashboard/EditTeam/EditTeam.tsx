@@ -8,6 +8,9 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../config/firebase";
 import AwayMatchesItems from "../AwayMatchesItems/AwayMatchesItems";
 import DirectMatchesItems from "../DirectMatchesItems/DirectMatchesItems";
+import LoadingIcon from "../../LoadingIcon/LoadingIcon";
+
+import { IoPencil } from "react-icons/io5";
 
 type EditTeamProps = {
   team: TeamProps;
@@ -32,6 +35,7 @@ export default function EditTeam({ team, onClose }: EditTeamProps) {
     directGoalsScored: team.directGoalsScored,
     directGoalsConceded: team.directGoalsConceded,
   });
+  const [loading, setLoading] = useState(false);
 
   const teamWinnings = formInput.hostWinnings + formInput.awayWinnings;
   const teamLost = formInput.hostLost + formInput.awayLost;
@@ -43,6 +47,7 @@ export default function EditTeam({ team, onClose }: EditTeamProps) {
     teamWinnings * 3 + (formInput.hostDraws + formInput.awayDraws);
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
+    setLoading(true);
     e.preventDefault();
 
     if (team) {
@@ -59,25 +64,33 @@ export default function EditTeam({ team, onClose }: EditTeamProps) {
       };
 
       await updateDoc(teamRef, teamData);
-
+      setLoading(false);
       onClose();
     }
   };
   return (
-    <div className="w-full h-full flex flex-col gap-5 overflow-hidden">
-      <div className="w-full flex justify-start items-center gap-2">
-        <p>Edycja drużyny:</p>
-        <h1 className="font-semibold">{team.name}</h1>
-        <p className="text-sm font-semibold pt-1 text-red-500">
-          {teamPoints}pkt
-        </p>
+    <div className="w-full h-full flex flex-col justify-between gap-5 overflow-hidden relative">
+      <div className="w-full flex justify-start items-center gap-2 py-5">
+        <p className="text-sm">Drużyna:</p>
+        <h1 className="text-sm font-semibold">{team.name}</h1>
       </div>
       <form className="w-full flex flex-col gap-5 overflow-y-auto">
         <HostMatchesItems formInput={formInput} setFormInput={setFormInput} />
         <AwayMatchesItems formInput={formInput} setFormInput={setFormInput} />
         <DirectMatchesItems formInput={formInput} setFormInput={setFormInput} />
-        <CtaButton text="Zapisz informacje" onClick={handleSubmit} />
       </form>
+      <div className="flex justify-end items-end mt-5">
+        <CtaButton
+          text="Zapisz informacje"
+          Icon={IoPencil}
+          onClick={handleSubmit}
+        />
+      </div>
+      {loading && (
+        <div className="w-full h-full absolute top-0 left-0 flex justify-center items-center bg-white bg-opacity-50">
+          <LoadingIcon size={22} />
+        </div>
+      )}
     </div>
   );
 }

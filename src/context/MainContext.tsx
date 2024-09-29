@@ -23,7 +23,7 @@ export default function MainProvider({ children }: MainProviderProps) {
     initializing,
     setInitializing,
   } = useAuth();
-  const { teams, setTeams } = useTeams();
+  const { teams, setTeams, sortedTeams } = useTeams();
   const { players, setPlayers } = usePlayers();
 
   if (loading || initializing) return <PageLoading />;
@@ -43,6 +43,7 @@ export default function MainProvider({ children }: MainProviderProps) {
 
         teams,
         setTeams,
+        sortedTeams,
 
         players,
         setPlayers,

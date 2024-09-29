@@ -29,10 +29,13 @@ export const router = createBrowserRouter(
         }
       />
       <Route path="/dashboard" element={<Dashboard />}>
-        <Route path="team" element={<Team />} />
+        <Route index element={<>Dashboard</>} />
+        <Route path="players" element={<Team />} />
         <Route path="teams" element={<Teams />} />
         <Route path="match-queue" element={<MatchQueue />} />
         <Route path="scoreboard" element={<ScoreboardPage />} />
+        <Route path="posts" element={<h1>Posty</h1>} />
+        <Route path="users" element={<h1>Użytkownicy</h1>} />
       </Route>
       <Route path="/team" element={<Team />} />
       <Route path="/table" element={<Table />} />

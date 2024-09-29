@@ -1,16 +1,14 @@
-import React, { useContext } from "react";
-import { MainContext } from "../../context/MainContext";
+import React from "react";
+
 import { Navigate } from "react-router-dom";
+import { useMainContext } from "../../hooks/useMainContext";
 
 type ProtectedRouteProps = {
   children: React.ReactNode;
 };
 
 export default function ProtectedRoute({ children }: ProtectedRouteProps) {
-  const context = useContext(MainContext);
-  if (!context) return "loading...";
-
-  const { currentUser } = context;
+  const { currentUser } = useMainContext();
 
   return currentUser ? children : <Navigate to="/" />;
 }

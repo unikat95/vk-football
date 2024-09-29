@@ -1,26 +1,18 @@
-import React, {
-  ChangeEvent,
-  SetStateAction,
-  useContext,
-  useState,
-} from "react";
+import React, { ChangeEvent, SetStateAction, useState } from "react";
 
 import { v4 as uuidv4 } from "uuid";
 import { IoIosAddCircleOutline } from "react-icons/io";
 
 import CtaButton from "../../CtaButton/CtaButton";
-import { MainContext } from "../../../context/MainContext";
-import PageLoading from "../../PageLoading/PageLoading";
+import FormInput from "../../FormInput/FormInput";
+import { useMainContext } from "../../../hooks/useMainContext";
 
 type AddTeamFormProps = {
   setIsOpen: React.Dispatch<SetStateAction<boolean>>;
 };
 
 export default function AddTeamForm({ setIsOpen }: AddTeamFormProps) {
-  const context = useContext(MainContext);
-  if (!context) return <PageLoading />;
-
-  const { handleAddTeam } = context;
+  const { handleAddTeam } = useMainContext();
 
   const [team, setTeam] = useState({
     name: "",
@@ -28,10 +20,12 @@ export default function AddTeamForm({ setIsOpen }: AddTeamFormProps) {
     logo: "",
   });
 
+  const incompleteTeam = !team.name || !team.stadium || !team.logo;
+
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    if (!team.name || !team.stadium) return;
+    if (incompleteTeam) return;
 
     const id = uuidv4();
     handleAddTeam(id, team.name, team.stadium, team.logo);
@@ -48,47 +42,40 @@ export default function AddTeamForm({ setIsOpen }: AddTeamFormProps) {
   };
 
   return (
-    <form className="w-full bg-white flex flex-col gap-5 rounded-md">
-      <h1 className="text-xl font-semibold">Dodaj drużynę:</h1>
-      <label htmlFor="name" className="flex flex-col gap-1">
-        Nazwa:
-        <input
-          type="text"
-          name="name"
-          placeholder="nazwa drużyny..."
-          onChange={handleInputChange}
-          value={team.name}
-          className="w-full border-[1px] border-slate-300 px-3  py-2 rounded-md"
-        />
-      </label>
-      <label htmlFor="stadium" className="flex flex-col gap-1">
-        Stadion:
-        <input
-          type="text"
-          name="stadium"
-          placeholder="stadion..."
-          onChange={handleInputChange}
-          value={team.stadium}
-          className="w-full border-[1px] border-slate-300 px-3  py-2 rounded-md"
-        />
-      </label>
-      <label htmlFor="stadium" className="flex flex-col gap-1">
-        Logo:
-        <input
-          type="text"
-          name="logo"
-          placeholder="logo..."
-          onChange={handleInputChange}
-          value={team.logo}
-          className="w-full border-[1px] border-slate-300 px-3  py-2 rounded-md"
-        />
-      </label>
+    <form className="w-full bg-white flex flex-col justify-center items-end gap-5 rounded-md">
+      <h1 className="w-full flex justify-center items-center text-xl font-semibold py-5">
+        Dodaj drużynę:
+      </h1>
+      <FormInput
+        type="text"
+        name="name"
+        placeholder="nazwa drużyny..."
+        value={team.name}
+        onChange={handleInputChange}
+        label="Nazwa:"
+      />
+      <FormInput
+        type="text"
+        name="stadium"
+        placeholder="stadion..."
+        value={team.stadium}
+        onChange={handleInputChange}
+        label="Stadion:"
+      />
+      <FormInput
+        type="text"
+        name="logo"
+        placeholder="logo..."
+        value={team.logo}
+        onChange={handleInputChange}
+        label="Logo:"
+      />
 
       <CtaButton
         text="Dodaj drużynę"
         Icon={IoIosAddCircleOutline}
         onClick={handleSubmit}
-        disabled={!team.name || !team.stadium}
+        disabled={incompleteTeam}
       />
     </form>
   );

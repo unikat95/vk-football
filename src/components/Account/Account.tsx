@@ -16,8 +16,14 @@ export default function Account({ isOpen, onClose }: AccountProps) {
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose} closeButton={true}>
-        <div className="w-full flex flex-col justify-center items-center gap-8">
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        closeButton={true}
+        widthClass="w-full sm:w-[70%] md:w-[50%] lg:w-[40%] xl:w-[30%]"
+        heightClass="h-full sm:h-auto"
+      >
+        <div className="w-full h-full flex flex-col justify-center items-center gap-8">
           <h1 className="text-2xl font-bold">
             {isSignedIn ? "Login" : "Create Account"}
           </h1>

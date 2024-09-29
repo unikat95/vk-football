@@ -1,4 +1,5 @@
 import React, { ChangeEvent, Dispatch, SetStateAction } from "react";
+import FormInputNumber from "../../FormInputNumber/FormInputNumber";
 
 type HostMatchesItemsProps = {
   formInput: {
@@ -43,58 +44,40 @@ export default function HostMatchesItems({
 
   return (
     <>
-      <h1 className="font-medium border-b pb-2">Mecze u siebie:</h1>
-      <div className="w-full grid grid-cols-2 gap-x-5 gap-y-2">
-        <label htmlFor="points">
-          Wygrane:
-          <input
-            type="number"
-            name="hostWinnings"
-            value={formInput.hostWinnings}
-            onChange={handleChangeInput}
-            className="w-full border-[1px] border-slate-300 px-3  py-2 rounded-md"
-          />
-        </label>
-        <label htmlFor="points">
-          Remisy:
-          <input
-            type="number"
-            name="hostDraws"
-            value={formInput.hostDraws}
-            onChange={handleChangeInput}
-            className="w-full border-[1px] border-slate-300 px-3  py-2 rounded-md"
-          />
-        </label>
-        <label htmlFor="points">
-          Przegrane:
-          <input
-            type="number"
-            name="hostLost"
-            value={formInput.hostLost}
-            onChange={handleChangeInput}
-            className="w-full border-[1px] border-slate-300 px-3  py-2 rounded-md"
-          />
-        </label>
-        <label htmlFor="points">
-          Strzelone bramki:
-          <input
-            type="number"
-            name="hostGoalsScored"
-            value={formInput.hostGoalsScored}
-            onChange={handleChangeInput}
-            className="w-full border-[1px] border-slate-300 px-3  py-2 rounded-md"
-          />
-        </label>
-        <label htmlFor="points">
-          Stracone bramki:
-          <input
-            type="number"
-            name="hostGoalsConceded"
-            value={formInput.hostGoalsConceded}
-            onChange={handleChangeInput}
-            className="w-full border-[1px] border-slate-300 px-3  py-2 rounded-md"
-          />
-        </label>
+      <h1 className="font-medium text-slate-600 border-b pb-2">
+        Mecze u siebie:
+      </h1>
+      <div className="w-full grid grid-cols-3 xl:grid-cols-5 gap-x-5 gap-y-2">
+        <FormInputNumber
+          formInput={formInput.hostWinnings}
+          name="hostWinnings"
+          onChange={handleChangeInput}
+          text="Wygrane:"
+        />
+        <FormInputNumber
+          formInput={formInput.hostDraws}
+          name="hostDraws"
+          onChange={handleChangeInput}
+          text="Remisy:"
+        />
+        <FormInputNumber
+          formInput={formInput.hostLost}
+          name="hostLost"
+          onChange={handleChangeInput}
+          text="Przegrane:"
+        />
+        <FormInputNumber
+          formInput={formInput.hostGoalsScored}
+          name="hostGoalsScored"
+          onChange={handleChangeInput}
+          text="Strzelone bramki:"
+        />
+        <FormInputNumber
+          formInput={formInput.hostGoalsConceded}
+          name="hostGoalsConceded"
+          onChange={handleChangeInput}
+          text="Stracone bramki:"
+        />
       </div>
     </>
   );
