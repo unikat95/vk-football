@@ -1,0 +1,15 @@
+        primaryLight: "#F5F5F5",
+        secondaryLight: "#E9E9E9",
+        tertiaryLight: "#FAFAFA",
+
+        primaryDark: "#171516",
+        secondaryDark: "#201E1F",
+        tertiaryDark: "#312E2F",
+
+        primaryRed: "#F30808",
+        secondaryRed: "#F53535",
+        tertiaryRed: "#FF6969",
+
+        primaryCyan: "#347B85",
+        secondaryCyan: "#50B2C0",
+        tertiaryCyan: "#66DCED",

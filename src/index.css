@@ -40,12 +40,16 @@
 }
 
 body {
-  @apply bg-primaryLight;
+  @apply bg-mainBg;
 
   width: 100dvw;
   height: auto;
   font-family: "Poppins", sans-serif;
   overflow-x: hidden;
+}
+
+select {
+  border-right: 0.75rem solid transparent;
 }
 
 #root {
@@ -93,5 +97,5 @@ body {
 }
 
 .dash-active {
-  @apply bg-primaryCyan;
+  @apply bg-primary;
 }

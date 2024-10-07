@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ScoreboardTableHead() {
   return (
-    <div className="w-full grid grid-cols-[auto,2fr,repeat(6,1fr)] md:grid-cols-[auto,2fr,repeat(7,1fr)] justify-center items-center bg-primaryDark text-white text-xs md:text-sm font-semibold md:font-normal px-2 py-2 md:px-3 md:py-3">
+    <div className="w-full grid grid-cols-[auto,2fr,repeat(6,1fr)] md:grid-cols-[auto,2fr,repeat(7,1fr)] justify-center items-center bg-tertiaryDark text-white text-xs md:text-sm font-semibold md:font-normal px-2 py-2 md:px-3 md:py-3 rounded-md">
       <div></div>
       <div className="flex justify-center items-center col-span-2">
         Drużyna:

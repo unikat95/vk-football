@@ -16,11 +16,11 @@ export default function Scoreboard({ editable }: ScoreboardProps) {
   const { sortedTeams } = useMainContext();
 
   return (
-    <div className="w-full flex flex-col gap-5 rounded-md">
+    <div className="w-full flex flex-col gap-5">
       <div className="w-full flex justify-start md:justify-center items-center text-xs md:text-base font-medium">
         Podkarpackie | Klasa B 2024/2025 | Jarosław
       </div>
-      <div className="flex flex-col rounded-md overflow-hidden">
+      <div className="flex flex-col rounded-md overflow-hidden gap-1">
         <ScoreboardTableHead />
         {loading ? (
           <div className="w-full py-5 flex justify-center items-center">

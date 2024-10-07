@@ -1,22 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Logo from "../../../assets/logo.svg";
 
-type DashboardLogoProps = {
-  isOpen: boolean;
-};
-
-export default function DashboardLogo({ isOpen }: DashboardLogoProps) {
+export default function DashboardLogo() {
   return (
-    <NavLink to="/dashboard" className="w-auto h-auto  rounded-full mt-5">
-      <div
-        className={`${
-          isOpen ? "w-20 h-20" : "w-10 h-10 "
-        } rounded-full overflow-hidden flex justify-center items-center transition-all`}
-      >
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlbfPCa2_R7W9mwADUg0QCtJVoLkLyd--dZA&s"
-          className="scale-100 "
-        />
+    <NavLink to="/dashboard" className="w-auto h-auto  rounded-full">
+      <div className=" w-8 h-8 md:w-20 md:h-20 rounded-full overflow-hidden flex justify-center items-center transition-all duration-500">
+        <img src={Logo} />
       </div>
     </NavLink>
   );

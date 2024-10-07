@@ -24,7 +24,7 @@ export default function TeamItem({ team, index, editable }: TeamItemProps) {
     setIsOpen(true);
   };
 
-  const teamBg = team.name === "Victoria Kidałowice" ? "#50B2C0" : undefined;
+  const teamBg = team.name === "Victoria Kidałowice" ? "#E53D3B" : undefined;
 
   const teamColor = team.name === "Victoria Kidałowice" ? "white" : undefined;
 
@@ -32,14 +32,14 @@ export default function TeamItem({ team, index, editable }: TeamItemProps) {
     <>
       <div
         key={team.id}
-        className={`w-full grid grid-cols-[auto,2fr,repeat(6,1fr)] md:grid-cols-[auto,2fr,repeat(7,1fr)] bg-primaryLight odd:bg-secondaryLight hover:bg-secondaryDark hover:text-white px-2 py-2 md:py-2 gap-1 text-xs md:text-sm font-light md:font-normal justify-center items-center
+        className={`w-full grid grid-cols-[auto,2fr,repeat(6,1fr)] md:grid-cols-[auto,2fr,repeat(7,1fr)] bg-secondary odd:bg-zinc-200 hover:bg-secondaryDark hover:text-white px-2 py-2 md:py-2 gap-1 text-xs md:text-sm font-light md:font-normal justify-center items-center rounded-md
 
         ${editable && "cursor-pointer"}`}
         style={{ backgroundColor: teamBg, color: teamColor }}
         onClick={editable ? handleOpenModal : undefined}
       >
         <div className="w-3 text-center font-semibold text-xs">{index + 1}</div>
-        <div className="px-1 text-nowrap col-span-2 flex justify-start items-center truncate overflow-hidden whitespace-nowrap">
+        <div className="w-full px-1 col-span-2 flex justify-start items-center truncate overflow-hidden whitespace-nowrap">
           {team.name}
         </div>
         <div className="flex justify-center items-center font-medium">

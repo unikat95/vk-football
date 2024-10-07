@@ -31,7 +31,7 @@ export default function Modal({
     <>
       {
         <div
-          className="w-[100dvw] h-[100dvh] bg-slate-950 bg-opacity-50 backdrop-blur-[1px] absolute top-0 left-0 flex justify-center items-center z-[999]"
+          className="w-[100dvw] h-[100dvh] bg-primaryDark bg-opacity-50 backdrop-blur-[1px] absolute top-0 left-0 flex justify-center items-center z-[999]"
           onClick={contentClose ? onClose : undefined}
         >
           <div

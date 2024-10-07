@@ -16,7 +16,7 @@ export default function TeamsList() {
           <LoadingIcon size={20} />
         </div>
       ) : (
-        <div className="w-full flex flex-col gap-1">
+        <div className="w-full flex flex-col gap-1 ">
           {teams.map((team, index) => (
             <TeamListItem team={team} index={index} />
           ))}

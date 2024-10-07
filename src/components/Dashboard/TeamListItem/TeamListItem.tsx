@@ -20,20 +20,20 @@ export default function TeamListItem({ team, index }: TeamListItemProps) {
   return (
     <>
       <div
-        className="w-auto h-auto bg-white hover:bg-thirdDark text-black hover:text-white border border-secondaryLight p-3 rounded-md flex justify-between items-center cursor-pointer text-sm"
+        className="w-auto h-auto bg-secondary hover:bg-tertiaryDark text-black hover:text-white border border-secondaryLight p-5 rounded-md flex justify-between items-center cursor-pointer text-sm transition-colors"
         style={
-          isOpen ? { backgroundColor: "#312E2F", color: "white" } : undefined
+          isOpen ? { backgroundColor: "#242424", color: "white" } : undefined
         }
         onClick={handleOpenTeamInfo}
       >
-        <div className="w-full flex gap-2 justify-start items-center">
-          <div className="w-5 h-5 bg-primaryCyan rounded-md bg-opacity-70 flex justify-center items-center text-white text-xs font-semibold">
+        <div className="w-full flex gap-2 justify-start items-center ">
+          <div className="w-5 h-5 rounded-md bg-opacity-70 flex justify-center items-center text-xs font-semibold">
             {index + 1}
           </div>
           <div className="w-6 h-6 flex justify-center items-center rounded-full overflow-hidden">
             <img src={team.logo} />
           </div>
-          <div className="text-xs truncate overflow-hidden whitespace-nowrap">
+          <div className="text-xs font-semibold truncate overflow-hidden whitespace-nowrap">
             {team.name}
           </div>
         </div>
@@ -41,7 +41,7 @@ export default function TeamListItem({ team, index }: TeamListItemProps) {
           <IoIosArrowForward />
         </div>
       </div>
-      {isOpen && <TeamInfo team={team} />}
+      {isOpen && <TeamInfo team={team} isOpen={isOpen} />}
     </>
   );
 }

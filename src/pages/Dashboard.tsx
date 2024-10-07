@@ -16,7 +16,7 @@ export default function Dashboard() {
 
       <div className="w-full h-full overflow-y-auto flex flex-col gap-5">
         <DashboardNavbar />
-        <div className="w-full h-full px-5">
+        <div className="w-full h-full px-2">
           <Outlet />
         </div>
       </div>

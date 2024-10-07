@@ -1,57 +1,31 @@
-import React, { SetStateAction, useState } from "react";
+import React from "react";
 
+import { NavItems } from "./NavItems";
 import { NavLink } from "react-router-dom";
+import DashboardSidebarItem from "../DashboardSidebarItem/DashboardSidebarItem";
+import DashboardLogo from "../DashboardLogo/DashboardLogo";
 
 import { FaHome } from "react-icons/fa";
-import DashboardNavbarItem from "../DashboardNavbarItem/DashboardNavbarItem";
-import DashboardLogo from "../DashboardLogo/DashboardLogo";
-import { navItems } from "./NavItems";
-
-import { GiHamburgerMenu } from "react-icons/gi";
+import DashboardSidebarActions from "../DashboardSidebarActions/DashboardSidebarActions";
 
 export default function DashboardSidebar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const handleToggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
   return (
-    <div
-      className={`
-        h-full bg-primaryDark p-5 transition-all
-        ${
-          isOpen
-            ? "absolute sm:relative w-[90%] sm:w-[50%] md:w-[40%] lg:w-[25%] xl:w-[20%]"
-            : "relative w-[5rem]"
-        }
-        `}
-    >
-      <ul className="w-full h-full flex flex-col text-nowrap justify-between items-center text-white">
-        <div className="w-full h-full flex flex-col justify-center items-center gap-10 relative">
-          <DashboardLogo isOpen={isOpen} />
-          <button
-            className="absolute top-0 -right-8 p-2 bg-secondaryDark hover:bg-thirdDark rounded-md"
-            onClick={handleToggleMenu}
-          >
-            <GiHamburgerMenu />
-          </button>
-          <div className="w-full h-full flex flex-col justify-start items-start gap-2">
-            {navItems.map((item) => (
-              <DashboardNavbarItem
-                item={item}
-                Icon={item.icon}
-                isOpen={isOpen}
-              />
+    <>
+      <div
+        className="
+      w-[4rem] md:w-[40%] lg:w-[30%] xl:w-[20%] h-[100dvh] bg-primaryDark flex flex-col justify-between items-center text-white p-3 transition-all duration-500 relative
+"
+      >
+        <div className="w-full flex flex-col justify-center items-center gap-5">
+          <DashboardLogo />
+          <ul className="w-full flex flex-col gap-2">
+            {NavItems.map((item) => (
+              <DashboardSidebarItem key={item.id} item={item} />
             ))}
-          </div>
+          </ul>
         </div>
-        <div>
-          <NavLink to="/">
-            <div className="bg-secondaryDark hover:bg-thirdDark p-3 rounded-xl">
-              <FaHome />
-            </div>
-          </NavLink>
-        </div>
-      </ul>
-    </div>
+        <DashboardSidebarActions />
+      </div>
+    </>
   );
 }

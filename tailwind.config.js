@@ -4,20 +4,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        primaryLight: "#F5F5F5",
-        secondaryLight: "#E9E9E9",
-        thirdLight: "#FAFAFA",
+        primary: "#E53D3B",
+        secondary: "#FFFFFA",
+        tertiary: "#F2F2F2",
+        mainBg: "#F7F7F7",
 
-        primaryDark: "#171516",
-        secondaryDark: "#201E1F",
-        thirdDark: "#312E2F",
-
-        primaryRed: "#FF4000",
-        secondaryRed: "FAAA8D",
-
-        primaryCyan: "#347B85",
-        secondaryCyan: "#50B2C0",
-        thirdCyan: "#66DCED",
+        primaryDark: "#151515",
+        secondaryDark: "#1F1F1F",
+        tertiaryDark: "#242424",
       },
     },
   },
